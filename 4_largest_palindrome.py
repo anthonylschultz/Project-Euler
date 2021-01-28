@@ -13,6 +13,4 @@ def pal():
             pals.append(int(prod))
     return max(pals)
 
-print(pal())
-
-
+print(pal()) 
