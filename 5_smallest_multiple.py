@@ -7,3 +7,5 @@ def small_mult():
     return min(ans)
 
 print(small_mult())
+
+
