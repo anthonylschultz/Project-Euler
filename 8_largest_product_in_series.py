@@ -1,4 +1,6 @@
+from numpy import prod
 def product_series():
+
     '''
     The four adjacent digits in the 1000-digit number that have the greatest product are 9 × 9 × 8 × 9 = 5832.
 
@@ -25,6 +27,14 @@ def product_series():
 '05886116467109405077541002256983155200055935729725'
 '71636269561882670428252483600823257530420752963450')
 
-    print(type(num))
+    lst = list(str(num))
+    lst = [int(i) for i in lst]
+
+    products = []    
+
+    for i in range(0, 1001):
+        products.append(prod(lst[i:i+13]))
+
+    return max(products)
 
 print(product_series())
