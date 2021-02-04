@@ -1,37 +1,33 @@
 def py_trip():
-
-    a = 0
-    b = 1
-
-    a_s = []
-    b_s = []
-    c_s = []
-
-    for val in range(0, 1000):
-        c = (a**2 + b**2)
-        
-
-        a_s.append(a)
-        b_s.append(b)
-        c_s.append(c)
-
-
-
-        a += 1
-        b += 1
-
-
-    for a, b, c in zip(a_s, b_s, c_s):
+    '''
+    1) create function to see if a2 + b2 = c2
+    2) create function to loop through numbers and calculate a2 + b2, check if == c2, accumulate a, b, c
+    3) for accumulated values, check if sum == 1000
+    '''
+    def is_py():
         if (a**2) + (b**2) == (c**2):
-            print(a, b, c)
+            return True
 
 
-    # return [a_s, b_s, c_s]
+    accum = []
 
+    for a in range(1, 500):
+        for b in range(1, 500):
+            for c in range(1, 500):
+                if a < b < c and is_py():
+                    accum.append([a, b, c])
 
-    '''
-    1) calculate a**2 + b**2 = c**2 (0, 100)
-    2) pack a, b, c values into object
-    '''
+    accum_sums = []
+    for lst in accum:
+        if sum(lst) == 1000:
+            accum_sums.append(lst)
+    
+    product = 1
+    for i in accum_sums:
+        for val in i:
+            product *= val
+    
+    return product
+
 
 print(py_trip())
