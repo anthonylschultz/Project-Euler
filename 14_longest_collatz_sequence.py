@@ -13,14 +13,25 @@ def col_seq(start, stop):
                 val_lst.append(int(val))
         d_col[start] = len(val_lst)
 
-        return d_col
-
+# Calculate Collatz Sequence for Parameters
     for start in range(start, stop):
         len_seq(start)
-        
+
+# Print Starting Value and Chain Length for largest Chain Length
+    v = list(d_col.values())
+    k = list(d_col.keys())
+    return f'Starting Value from Largest Chain Length: {k[v.index(max(v))]}, Chain Length: {max(v)}'
+
+
+# Print Output  
+    # for k, v in d_col.items():
+    #     print(f'Starting Value: {k}, Chain Length: {v}')
+
+# Active Collatz Sequence
     print(len_seq(start))
 
-print(col_seq(13, 200))
+# Activate Entire Function
+print(col_seq(13, 1000001))
 
 
 
