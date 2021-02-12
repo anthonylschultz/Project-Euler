@@ -1,4 +1,4 @@
-def numlet_counts():
+def num_counts(num):
     
     '''
 
@@ -12,11 +12,55 @@ def numlet_counts():
 
     '''
     pseudocode
-    0) create num <> word mapping for each number (0, 5)
-    dictionary - key = num, value = str(num)
-    1) accumulate words for each number (0, 5)
-    for num in 
-    2) get counts for all words
-
+    # 0) create num <> word mapping for each number (0, 100)
+    # dictionary - key = num, value = str(num)
+    1) analyze number 55 0 return str value
+    if 55 // 10 == int, return d[int*10] value
+    if 55 % 10 == int, return d[int] value
+    
+    2) count letters
+    lst -> accumulate words
+    letter accumulator - for word in lst, count letters, accumulate
     '''
 
+    d = {
+        1: 'one', 
+        2: 'two', 
+        3: 'three', 
+        4: 'four', 
+        5: 'five', 
+        6: 'six', 
+        7: 'seven', 
+        8: 'eight', 
+        9: 'nine', 
+        10: 'ten', 
+        11: 'eleven', 
+        12: 'twelve', 
+        13: 'thirteen', 
+        14: 'fourteen', 
+        15: 'fifteen', 
+        16: 'sixteen', 
+        17: 'seventeen', 
+        18: 'eighteen', 
+        19: 'nineteen', 
+        20: 'twenty',
+        30: 'thirty',
+        40: 'forty',
+        50: 'fifty',
+        60: 'sixty',
+        70: 'seventy',
+        80: 'eighty',
+        90: 'ninety'}
+
+    words = []
+    for k, v in d.items():
+        if (num // 10) * 10 == k: # returns fifty
+            words.append(v)
+        if num % 10 == k: # returns 5
+            words.append(v)
+    
+    return words
+
+    
+
+print(num_counts(num=55))
