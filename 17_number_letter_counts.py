@@ -50,17 +50,42 @@ def num_counts(num):
         60: 'sixty',
         70: 'seventy',
         80: 'eighty',
-        90: 'ninety'}
+        90: 'ninety',
+        100: 'one hundred'}
 
     words = []
-    for k, v in d.items():
-        if (num // 10) * 10 == k: # returns fifty
-            words.append(v)
-        if num % 10 == k: # returns 5
-            words.append(v)
-    
+
+    if num < 100:
+        for k, v in d.items():
+            if (num // 10) * 10 == k: # returns fifty
+                words.append(v)
+        for k, v in d.items():
+            if num % 10 == k: # returns 5
+                words.append(v)
+
+    elif num > 100:
+        hundreds = num // 100
+        words.append([d[hundreds], 'hundred'])
+
+        tens = num // 10 # tens = 65
+        for k, v in d.items():
+            if (tens // 10) * 10 == k:
+                words.append(v)
+        for k, v in d.items():
+            if tens % 10 == k:
+                words.append(v)
+
+
+        # if tens % 10 != 0:
+        #     tens_reformat = (tens // 10) * 10
+        #     words.append(d[tens_reformat])
+
+        # ones = tens % 10
+        # words.append(d[ones])
+
+
     return words
 
     
 
-print(num_counts(num=55))
+print(num_counts(num=651))
