@@ -1,7 +1,5 @@
-def num_counts(num):
-    
+def num_counts():
     '''
-
     If the numbers 1 to 5 are written out in words: one, two, three, four, five, then there are 3 + 3 + 5 + 4 + 4 = 19 letters used in total.
 
     If all the numbers from 1 to 1000 (one thousand) inclusive were written out in words, how many letters would be used?
@@ -9,20 +7,6 @@ def num_counts(num):
     NOTE: Do not count spaces or hyphens. For example, 342 (three hundred and forty-two) contains 23 letters and 115 (one hundred and fifteen) 
     contains 20 letters. The use of "and" when writing out numbers is in compliance with British usage.
     '''
-
-    '''
-    pseudocode
-    # 0) create num <> word mapping for each number (0, 100)
-    # dictionary - key = num, value = str(num)
-    1) analyze number 55 0 return str value
-    if 55 // 10 == int, return d[int*10] value
-    if 55 % 10 == int, return d[int] value
-    
-    2) count letters
-    lst -> accumulate words
-    letter accumulator - for word in lst, count letters, accumulate
-    '''
-
     d = {
         1: 'one', 
         2: 'two', 
@@ -52,40 +36,39 @@ def num_counts(num):
         80: 'eighty',
         90: 'ninety',
         100: 'one hundred'}
-
     words = []
+    # loop through each number between 1, 1000 (inclusive)
+    for num in range(1, 1000+1):
+        # analyze numbers less than 100, map to dictionary
+        if num < 100:
+            for k, v in d.items():
+                if (num // 10) * 10 == k: # returns fifty
+                    words.append(v)
+            for k, v in d.items():
+                if num % 10 == k: # returns 5
+                    words.append(v)
 
-    if num < 100:
-        for k, v in d.items():
-            if (num // 10) * 10 == k: # returns fifty
-                words.append(v)
-        for k, v in d.items():
-            if num % 10 == k: # returns 5
-                words.append(v)
+        # analyze numbers greater than 100, map to dictionary
+        elif num > 100:
+            hundreds = num // 100
+            words.append([d[hundreds], 'hundred'])
 
-    elif num > 100:
-        hundreds = num // 100
-        words.append([d[hundreds], 'hundred'])
+            val = num
+            val -= hundreds*100
 
-        tens = num // 10 # tens = 65
-        for k, v in d.items():
-            if (tens // 10) * 10 == k:
-                words.append(v)
-        for k, v in d.items():
-            if tens % 10 == k:
-                words.append(v)
+            for k, v in d.items():
+                if (val // 10) * 10 == k:
+                    words.append(v)
+            for k, v in d.items():
+                if val % 10 == k:
+                    words.append(v)
 
+    # letter counter -> pack words into list, accumulate letter counts of all words from numbers 1, 1000 (inclusive)
+    letter_count = 0
+    for word in words:
+        for letter in word:
+            letter_count += 1
 
-        # if tens % 10 != 0:
-        #     tens_reformat = (tens // 10) * 10
-        #     words.append(d[tens_reformat])
+    return letter_count
 
-        # ones = tens % 10
-        # words.append(d[ones])
-
-
-    return words
-
-    
-
-print(num_counts(num=651))
+print(num_counts())
