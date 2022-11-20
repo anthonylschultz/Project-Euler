@@ -1,4 +1,8 @@
 def even_fib():
+
+    '''
+    Create a function to 
+    '''
     accum = []
 
     for i in range(1, 3):
